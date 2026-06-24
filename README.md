@@ -6,7 +6,9 @@
 
 ## Objectif
 
-Déterminer le temps que met une particule quantique (modélisée par un paquet d'ondes gaussien 1D) pour franchir une barrière rectangulaire de potentiel par **effet tunnel**, numériquement ET analytiquement.
+Determiner le temps que met une particule quantique (modelisee par un
+paquet d'ondes gaussien 1D) pour franchir une barriere rectangulaire
+de potentiel par effet tunnel, numeriquement et analytiquement.
 
 ## Fichiers
 
@@ -17,16 +19,10 @@ Déterminer le temps que met une particule quantique (modélisée par un paquet 
 - tunnel_effect.py : partie 4, effet tunnel et temps de traversee
 - main.py : lance tout ou une partie
 
-## Unités réduites
+## Unites reduites
 
-Pour simplifier les calculs, on utilise les unités réduites :
-
-- hbar = 1
-- m = 1
-- k0 = 2.0
-- a0 = 3.0
-- E0 = hbar^2 k0^2 / (2m) = 2.0
-- v_g = hbar k0 / m = 2.0
+Pour simplifier on prend hbar=1, m=1, k0=2, a0=3.
+Du coup E0=2 et v_g=2.
 
 ## Utilisation
 
@@ -45,21 +41,22 @@ pip install numpy matplotlib
 
 ## Contenu
 
-Partie 1 : onde plane 1D Psi(x,t) = A exp(i(kx - wt)), superposition de
-3 ondes planes -> battements, enveloppe |A|[1 + cos(Dk x/2)].
+Partie 1 : onde plane 1D et superposition de 3 ondes planes, on voit
+les battements.
 
-Partie 2 : paquet d'ondes gaussien, solution analytique particule libre.
-A t=0 : Psi(x,0) = (2/(pi a^2))^(1/4) exp(i k0 x) exp(-x^2/a^2).
-Dispersion au cours du temps, norme conservee.
+Partie 2 : paquet d'ondes gaussien, solution analytique pour une
+particule libre. Le paquet se disperse avec le temps mais la norme
+reste egale a 1.
 
 Partie 3 : solveur Schrodinger 1D par Euler explicite, derivees par
-differences finies. Validation avec la solution analytique pour V=0.
+differences finies. Comparaison avec la solution analytique pour V=0
+(particule libre).
 
-Partie 4 : mesure du temps de traversee tau0 (sans barriere) et
-tau_t (avec barriere, effet tunnel). Coefficient de transmission T.
-Influence de la largeur a et de la hauteur V0.
+Partie 4 : mesure du temps de traversee tau0 sans barriere et tau_t
+avec barriere (effet tunnel). Calcul du coefficient de transmission T.
+Etude de l'influence de la largeur a et de la hauteur V0.
 
 ## Remarques
 
-- Le schema d'Euler explicite est stable si dt < 2 m dx^2 / hbar.
+- Le schema d'Euler est stable si dt est assez petit devant dx^2.
 - Les simulations peuvent prendre quelques minutes.
