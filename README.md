@@ -8,88 +8,58 @@
 
 Déterminer le temps que met une particule quantique (modélisée par un paquet d'ondes gaussien 1D) pour franchir une barrière rectangulaire de potentiel par **effet tunnel**, numériquement ET analytiquement.
 
-## Structure du projet
+## Fichiers
 
-```
-projet_tunnel/
-├── utils.py                  # Constantes partagées, fonctions utilitaires
-├── OndePLane1d3I.py          # Partie 1 : Onde plane 1D + superposition
-├── PaquetOndeGauss1d3I.py    # Partie 2 : Paquet d'ondes gaussien analytique
-├── schrodinger_solver.py     # Partie 3 : Solveur Schrödinger numérique
-├── tunnel_effect.py          # Partie 4 : Effet tunnel, temps de traversée
-├── main.py                   # Point d'entrée (lance tout ou une partie)
-├── prof/                     # Codes originaux du professeur (référence)
-│   ├── OndePlane.py
-│   └── PaquetOndes.py
-├── graphs/                   # Graphiques générés (créé automatiquement)
-└── README.md
-```
+- utils.py : constantes et fonctions utiles (hbar=1, m=1, barriere, coef T...)
+- OndePLane1d3I.py : partie 1, ondes planes 1D et superposition
+- PaquetOndeGauss1d3I.py : partie 2, paquet d'ondes gaussien
+- schrodinger_solver.py : partie 3, solveur Schrodinger (Euler explicite)
+- tunnel_effect.py : partie 4, effet tunnel et temps de traversee
+- main.py : lance tout ou une partie
 
 ## Unités réduites
 
 Pour simplifier les calculs, on utilise les unités réduites :
 
-| Grandeur | Valeur |
-|----------|--------|
-| ℏ (constante de Planck réduite) | 1 |
-| m (masse) | 1 |
-| k₀ (nombre d'onde central) | 2.0 |
-| a₀ (largeur initiale du paquet) | 3.0 |
-| E₀ = ℏ²k₀²/(2m) | 2.0 |
-| v_g = ℏk₀/m | 2.0 |
+- hbar = 1
+- m = 1
+- k0 = 2.0
+- a0 = 3.0
+- E0 = hbar^2 k0^2 / (2m) = 2.0
+- v_g = hbar k0 / m = 2.0
 
 ## Utilisation
 
-### Lancer une partie spécifique
-
 ```bash
-python OndePLane1d3I.py        # Partie 1 : ondes planes
-python PaquetOndeGauss1d3I.py  # Partie 2 : paquet gaussien
-python schrodinger_solver.py   # Partie 3 : solveur Schrödinger
-python tunnel_effect.py        # Partie 4 : effet tunnel
-```
-
-### Lancer tout le projet
-
-```bash
-python main.py
+python3 main.py          # menu interactif
+python3 OndePLane1d3I.py # ou lancer une partie directement
 ```
 
 ## Dépendances
 
-- Python ≥ 3.10
-- NumPy
-- Matplotlib
+Python 3, numpy, matplotlib.
 
 ```bash
 pip install numpy matplotlib
 ```
 
-## Résumé des résultats
+## Contenu
 
-### Partie 1 — Ondes planes
-- Implémentation d'une onde plane 1D : Ψ(x,t) = A·e^(i(kx−ωt))
-- Superposition de 3 ondes planes → phénomène de **battements**
-- Enveloppe : |A|[1 + cos(Δk·x/2)]
+Partie 1 : onde plane 1D Psi(x,t) = A exp(i(kx - wt)), superposition de
+3 ondes planes -> battements, enveloppe |A|[1 + cos(Dk x/2)].
 
-### Partie 2 — Paquet d'ondes gaussien
-- Solution analytique pour une particule libre
-- À t=0 : Ψ(x,0) = (2/(πa²))^(1/4)·e^(ik₀x)·e^(−x²/a²)
-- Dispersion du paquet au cours du temps
-- Conservation de la norme vérifiée
+Partie 2 : paquet d'ondes gaussien, solution analytique particule libre.
+A t=0 : Psi(x,0) = (2/(pi a^2))^(1/4) exp(i k0 x) exp(-x^2/a^2).
+Dispersion au cours du temps, norme conservee.
 
-### Partie 3 — Solveur Schrödinger
-- Schéma d'Euler explicite pour l'équation de Schrödinger dépendante du temps
-- Dérivées par différences finies
-- Validation : comparaison numérique/analytique pour V=0
+Partie 3 : solveur Schrodinger 1D par Euler explicite, derivees par
+differences finies. Validation avec la solution analytique pour V=0.
 
-### Partie 4 — Effet tunnel
-- Mesure numérique de τ₀ (temps sans barrière) et τ_t (temps tunnel)
-- Coefficient de transmission T (formule analytique)
-- Étude de l'influence de la largeur a et de la hauteur V₀
-- Comparaison avec les prédictions classiques
+Partie 4 : mesure du temps de traversee tau0 (sans barriere) et
+tau_t (avec barriere, effet tunnel). Coefficient de transmission T.
+Influence de la largeur a et de la hauteur V0.
 
 ## Remarques
 
-- Le schéma d'Euler explicite est conditionnellement stable : Δt < 2mΔx²/ℏ
-- Les simulations peuvent prendre quelques minutes selon la résolution choisie
+- Le schema d'Euler explicite est stable si dt < 2 m dx^2 / hbar.
+- Les simulations peuvent prendre quelques minutes.
