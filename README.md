@@ -21,8 +21,16 @@ de potentiel par effet tunnel, numeriquement et analytiquement.
 
 ## Unites reduites
 
-Pour simplifier on prend hbar=1, m=1, k0=2, a0=3.
-Du coup E0=2 et v_g=2.
+Pour simplifier les calculs, on utilise les unites reduites :
+
+| Grandeur | Valeur |
+|----------|--------|
+| hbar (constante de Planck reduite) | 1 |
+| m (masse) | 1 |
+| k0 (nombre d'onde central) | 2.0 |
+| a0 (largeur initiale du paquet) | 3.0 |
+| E0 = hbar^2 k0^2 / (2m) | 2.0 |
+| v_g = hbar k0 / m | 2.0 |
 
 ## Utilisation
 
